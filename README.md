@@ -1,1 +1,1 @@
-# icpc-team-notebook-la-tasita
+# La Tasita
