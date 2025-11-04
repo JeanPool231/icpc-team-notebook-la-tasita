@@ -2,105 +2,75 @@
 
 using namespace std;
 
-#define fst first
-#define snd second
-#define all(c) ((c).begin()), ((c).end())
-#define ll long long
 #define endl '\n'
-
-const int INF = 1 << 30;
-const int MAXN = 1e5+5;
 
 int n, l;
 vector<vector<int>> adj;
-vector<int> height;
 
 int timer;
-vector<vector<int>> st; // sparse table
+vector<int> tin, tout;
+vector<vector<int>> up;
 
-void dfs(int u, int p, int h) {
-  height[u] = h;
-  st[u][0] = p;
-  for (int i = 1; i <= l; i++) {
-    st[u][i] = st[st[u][i - 1]][i - 1];
+void dfs(int v, int p)
+{
+  tin[v] = ++timer;
+  up[v][0] = p;
+  for (int i = 1; i <= l; ++i)
+    up[v][i] = up[up[v][i-1]][i-1];
+
+  for (int u : adj[v]) {
+    if (u != p)
+      dfs(u, v);
   }
-  for (int v : adj[u]) {
-    if (v != p) {
-      dfs(v, u, h + 1);
-    }
-  }
+
+  tout[v] = ++timer;
 }
 
-int lca(int u, int v) {
-  if(height[u] > height[v]) swap(u,v);
+bool is_ancestor(int u, int v)
+{
+  return tin[u] <= tin[v] && tout[u] >= tout[v];
+}
 
-  int diff = height[v] - height[u];
-
-  for(int i = 0; i <= l; i++) {
-    if((diff >> i) & 1) {
-      v = st[v][i];
-    }
+int lca(int u, int v)
+{
+  if (is_ancestor(u, v))
+    return u;
+  if (is_ancestor(v, u))
+    return v;
+  for (int i = l; i >= 0; --i) {
+    if (!is_ancestor(up[u][i], v))
+      u = up[u][i];
   }
-
-  if(u == v) return u;
-
-  for(int i = l; i >= 0; i--) {
-    if(st[u][i] != st[v][i]) {
-      u = st[u][i];
-      v = st[v][i];
-    }
-  }
-
-  return st[u][0];   
+  return up[u][0];
 }
 
 void preprocess(int root) {
+  tin.resize(n);
+  tout.resize(n);
+  timer = 0;
   l = ceil(log2(n));
-  st.assign(n, vector<int>(l + 1));
-  height.assign(n,0);
-  dfs(root, root, 0);
+  up.assign(n, vector<int>(l + 1));
+  dfs(root, root);
 }
 
-void solve() {
-  cin >> n;
-  vector<int> parent(n,-1);
-  adj.clear();
-  adj.resize(n+1);
-  for(int u = 0; u < n; u++) {
-    int m; cin >> m;
-    for(int j = 0; j < m; j++) {
-      int v; cin >> v; v--;
-      adj[u].push_back(v);
-      parent[v] = u;
-    }
-  }  
+int main()
+{
+  n = 6;
+  adj.assign(n, {});
+
+  adj[0] = {1, 2, 3};
+  adj[1] = {0, 4, 5};
+  adj[2] = {0};
+  adj[3] = {0};
+  adj[4] = {1};
+  adj[5] = {1};
 
   int root = 0;
-  for(int i = 0; i < n; i++) {
-    if(parent[i] == -1) {
-      root = i;
-      break;
-    }
-  }
-
   preprocess(root);
 
-  int x; cin >> x;
-  while(x--) {
-    int u,v;
-    cin >> u >> v;
-    u--;v--;
-    cout << lca(u,v)+1 << endl;
-  }
-}
-
-int main() {
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-  int t = 1;
-  cin >> t;
-  for(int i = 1; i <= t; i++) {
-    cout << "Case " << i << ":" << endl;
-    solve();
-  }
+  cout << "LCA(4, 5): " << lca(4, 5) << endl; // expect 1
+  cout << "LCA(4, 2): " << lca(4, 2) << endl; // expect 0
+  cout << "LCA(3, 2): " << lca(3, 2) << endl; // expect 0
+  cout << "LCA(1, 4): " << lca(1, 4) << endl; // expect 1
+  cout << "LCA(5, 3): " << lca(5, 3) << endl; // expect 0
 }
