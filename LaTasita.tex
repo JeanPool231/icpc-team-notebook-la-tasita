@@ -1,0 +1,214 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% NOTEBOOK ICPC - LA TASITA (VERSIÓN MEJORADA)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --- CLASE DE DOCUMENTO ---
+\documentclass[12pt, a4paper]{report}
+
+% --- PAQUETES ESENCIALES ---
+\usepackage[utf8]{inputenc}    % Acentos y ñ
+\usepackage[T1]{fontenc}       % Codificación de fuentes
+\usepackage[spanish]{babel}    % Idioma español (para "ÍndGice", "Capítulo")
+\usepackage{geometry}          % Márgenes personalizados
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+
+% --- PAQUETES PARA CÓDIGO ---
+\usepackage{listings}          % Para insertar código
+\usepackage{xcolor}            % Para colores en el código
+
+% --- PAQUETES ADICIONALES ---
+\usepackage{amsmath, amssymb}  % Para fórmulas matemáticas
+\usepackage{graphicx}          % Para imágenes
+\usepackage{hyperref}          % Para links (útil en el índice)
+
+% --- CONFIGURACIÓN DE LISTINGS (CÓDIGO) ---
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.97, 0.97, 0.97}
+
+\lstdefinestyle{mystyle}{
+    language=C++,
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen}\itshape,
+    keywordstyle=\color{blue}\bfseries,
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle} % Aplicar este estilo por defecto
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% --- MODIFICACIONES DEL PREÁMBULO ---
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --- 1. FORZAR NUEVA PÁGINA POR SECCIÓN ---
+% Redefine \section para que siempre inicie en una página nueva.
+\let\oldsection\section
+\renewcommand{\section}{\clearpage\oldsection}
+
+% --- 2. ARREGLO PARA USAR \part PERO NUMERAR SECCIONES 1.1, 2.1 ---
+% Asegura que \section y \subsection se numeren y aparezcan en el índice
+\setcounter{secnumdepth}{2} 
+\setcounter{tocdepth}{2}    
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% INICIO DEL DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% --- PORTADA ---
+\begin{titlepage}
+    \centering
+    \vspace*{\fill}
+    
+    {\Huge \textbf{La tasita}} % Título principal
+    
+    \vfill
+    
+    {\Large ICPC Notebook} % Subtítulo
+    
+    \vfill
+    
+    {\large Team: Turistas } % Nombre del equipo
+    
+    \vfill
+\end{titlepage}
+
+% --- ÍNDICE (TABLA DE CONTENIDO) ---
+\tableofcontents % Genera el índice automáticamente
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% INICIO DEL CONTENIDO DEL NOTEBOOK
+%
+% ESTRUCTURA DE USO:
+% 1. Usa \part{...} para el título principal del tema (Parte I, II...)
+% 2. Usa \chapter{} INMEDIATAMENTE DESPUÉS para resetear el contador.
+% 3. Usa \section{...} para tu algoritmo (se numerará 1.1, 1.2...)
+% 4. Usa \lstinputlisting{...} para jalar el código desde un archivo.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{Dynamic Programming}
+% --- Reseteo de contadores
+\stepcounter{chapter} % Avanza el contador principal (invisible)
+\setcounter{section}{0} % Resetea el contador de sección a 0
+
+\section{Longest Common Subsequence} % \clearpage se activa aquí
+\lstinputlisting{DP/LCS.cpp}
+
+\section{Longest Increasing Subsequence} 
+\lstinputlisting{DP/LIS.cpp}
+
+\section{Longest Increasing Subsequence Fast}
+\lstinputlisting{DP/LISFAST.cpp}
+
+\section{Maximum Subarray}
+\lstinputlisting{DP/MaximumSubarray.cpp}
+
+\section{Knapsack}
+\lstinputlisting{DP/Knapsack.cpp}
+
+\section{Knapsack Binary}
+\lstinputlisting{DP/KnapsackBinary.cpp}
+
+\section{Knapsack Re}
+\lstinputlisting{DP/KnapsackRe.cpp}
+
+\section{Knapsack Subset Sum}
+\lstinputlisting{DP/KnapsackSubsetSum.cpp}
+
+\part{Data Structures}
+\stepcounter{chapter}
+\setcounter{section}{0}
+
+\section{Fenwick Tree}
+\lstinputlisting{data-structures/fenwick-tree.cpp}
+
+\section{Fenwick Tree 2d}
+\lstinputlisting{data-structures/fenwick-tree-2d.cpp}
+\section{Treap}
+\lstinputlisting{data-structures/treap.cpp}
+\section{Implicit Treap}
+\lstinputlisting{data-structures/implicit-treap.cpp}
+\section{Ordered Set}
+\lstinputlisting{data-structures/ordered_set.cpp}
+\section{Segment Tree}
+\lstinputlisting{data-structures/segment-tree.cpp}
+\section{Segment Tree Summary}
+\lstinputlisting{data-structures/segment-tree-summary.cpp}
+\section{Persistent Segment Tree}
+\lstinputlisting{data-structures/persistent-segment-tree.cpp}
+\section{Sparse Table}
+\lstinputlisting{data-structures/sparse-table.cpp}
+
+\part{Geometry}
+\stepcounter{chapter}
+\setcounter{section}{0}
+
+\section{Convex Hull}
+\lstinputlisting{geometry/convex-hull.cpp}
+
+\part{Graphs}
+\stepcounter{chapter}
+\setcounter{section}{0}
+\section{2 Sat}
+\lstinputlisting{graphs/2-sat.cpp}
+\section{Bellman Ford}
+\lstinputlisting{graphs/bellman-ford.cpp}
+\section{Dijkstra}
+\lstinputlisting{graphs/dijkstra.cpp}
+\section{Floyd Warshall}
+\lstinputlisting{graphs/floyd-warshall.cpp}
+\section{Ford Fulkerson}
+\lstinputlisting{graphs/ford-fulkerson.cpp}
+\section{Functional Graph}
+\lstinputlisting{graphs/functional-graph.cpp}
+\section{Hungarian}
+\lstinputlisting{graphs/hungarian.cpp}
+\section{Kosaraju}
+\lstinputlisting{graphs/kosaraju-scc.cpp}
+\section{Kruskal}
+\lstinputlisting{graphs/kruskal.cpp}
+\section{Heavy Light Descomposition}
+\lstinputlisting{graphs/HLD.cpp}
+\section{LCA}
+\lstinputlisting{graphs/lca.cpp}
+\section{Topological Sort}
+\lstinputlisting{graphs/topological-sort.cpp}
+\section{Centroid Descomposition}
+\lstinputlisting{graphs/CD.cpp}
+
+
+
+\part{Math}
+\stepcounter{chapter}
+\setcounter{section}{0}
+\section{FFT}
+\lstinputlisting{math/FFT.cpp}
+\section{NTT}
+\lstinputlisting{math/NTT.cpp}
+\section{Binary Exponentiation}
+\lstinputlisting{math/binary-exponentiation.cpp}
+\section{Matrix Exponentiation}
+\lstinputlisting{math/matrix-exponentiation.cpp}
+
+\part{Strings}
+\stepcounter{chapter}
+\setcounter{section}{0}
+\section{KMP Automaton}
+\lstinputlisting{strings/kmp-automaton.cpp}
+\section{Hashing}
+\lstinputlisting{strings/string-hashing.cpp}
+\end{document}
