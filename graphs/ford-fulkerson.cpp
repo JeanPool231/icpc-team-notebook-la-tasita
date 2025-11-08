@@ -1,121 +1,110 @@
-// max flow algorithm
-
 #include <bits/stdc++.h>
 
 using namespace std;
 
-#define fst first
-#define snd second
-#define all(c) ((c).begin()), ((c).end())
+#define ll long long
+#define endl '\n'
 
-const int INF = 1e9;
+const ll INF = 1e18;
 
-struct graph {
-  typedef long long flow_type;
-  struct edge {
-    int src, dst;
-    flow_type capacity, flow;
-    size_t rev;
+struct Dinic {
+  struct Edge {
+    int to, rev;
+    ll cap;
   };
+
   int n;
-  vector<vector<edge>> adj;
+  vector<vector<Edge>> g;
+  vector<int> level, it;
 
-  graph(int n) : n(n), adj(n) { }
+  Dinic(int n) : n(n), g(n), level(n), it(n) {}
 
-  void add_edge(int src, int dst, flow_type capacity) {
-    adj[src].push_back({src, dst, capacity, 0, adj[dst].size()});
-    adj[dst].push_back({dst, src, 0, 0, adj[src].size() - 1});
+  void add_edge(int u, int v, ll cap) {
+    g[u].push_back({v, (int)g[v].size(), cap});
+    g[v].push_back({u, (int)g[u].size() - 1, 0});
   }
 
-  int max_flow(int s, int t) {
-    vector<bool> visited(n);
-    function<flow_type(int, flow_type)> augment = [&](int u, flow_type cur) {
-      if (u == t) return cur;
-      visited[u] = true;
-      for (auto &e : adj[u]) {
-        if (!visited[e.dst] && e.capacity > e.flow) {
-          flow_type f = augment(e.dst, min(e.capacity - e.flow, cur));
-          if (f > 0) {
-            e.flow += f;
-            adj[e.dst][e.rev].flow -= f;
-            return f;
-          }
+  bool bfs(int s, int t) {
+    fill(level.begin(), level.end(), -1);
+    queue<int> q;
+    level[s] = 0; q.push(s);
+    while (!q.empty()) {
+      int u = q.front(); q.pop();
+      for (auto &e : g[u]) {
+        if (e.cap > 0 && level[e.to] == -1) {
+          level[e.to] = level[u] + 1;
+          q.push(e.to);
         }
       }
-      return flow_type(0);
-    };
-    for (int u = 0; u < n; ++u)
-      for (auto &e : adj[u]) e.flow = 0;
+    }
+    return level[t] != -1;
+  }
 
-    flow_type flow = 0;
-    while (1) {
-      fill(all(visited), false);
-      flow_type f = augment(s, INF);
-      if (f == 0) break;
-      flow += f;
+  ll dfs(int u, int t, ll f) {
+    if (u == t) return f;
+    for (int &i = it[u]; i < (int)g[u].size(); i++) {
+      Edge &e = g[u][i];
+      if (e.cap > 0 && level[e.to] == level[u] + 1) {
+        ll ret = dfs(e.to, t, min(f, e.cap));
+        if (ret > 0) {
+          e.cap -= ret;
+          g[e.to][e.rev].cap += ret;
+          return ret;
+        }
+      }
+    }
+    return 0;
+  }
+
+  ll max_flow(int s, int t) {
+    ll flow = 0, f;
+    while (bfs(s, t)) {
+      fill(it.begin(), it.end(), 0);
+      while ((f = dfs(s, t, INF)) > 0)
+        flow += f;
     }
     return flow;
   }
 
-  // test function to understand the code
-  // Function to print the residual graph
-  void print_residual_graph() {
-    cout << "Residual Graph:" << endl;
-    for (int u = 0; u < n; ++u) {
-      for (const auto &e : adj[u]) {
-        if (e.capacity > 0) {  // Ignore reverse edges with 0 original capacity
-          cout << "Edge from " << e.src << " to " << e.dst
-            << " | Capacity: " << e.capacity
-            << " | Flow: " << e.flow
-            << " | Residual Capacity: " << (e.capacity - e.flow) << endl;
-        }
-      }
-    }
-    cout << "------------------------" << endl;
-  }
-
-  void print_mincut_edges() {
-    // Step 1: Find reachable nodes from the source in the residual graph
-    vector<bool> visited(n, false);
+  // Min-cut edges
+  void print_mincut_edges(int s) {
+    vector<bool> vis(n, false);
     queue<int> q;
-    q.push(0);  // Assuming 0 is the source node
-    visited[0] = true;
-
+    q.push(s);
+    vis[s] = true;
     while (!q.empty()) {
-      int u = q.front();
-      q.pop();
-      for (const auto &e : adj[u]) {
-        if (!visited[e.dst] && e.capacity > e.flow) {  // Residual capacity > 0
-          visited[e.dst] = true;
-          q.push(e.dst);
+      int u = q.front(); q.pop();
+      for (auto &e : g[u]) {
+        if (e.cap > 0 && !vis[e.to]) {
+          vis[e.to] = true;
+          q.push(e.to);
         }
       }
     }
-
-    // Step 2: Print edges that cross the cut
     for (int u = 0; u < n; ++u) {
-      if (!visited[u]) continue;
-      for (const auto &e : adj[u]) {
-        if (!visited[e.dst] && e.capacity > 0) {
-          cout << u + 1 << " " << e.dst + 1 << '\n';  // Output edge in 1-based index
+      if (vis[u]) {
+        for (auto &e : g[u]) {
+          if (!vis[e.to] && e.cap == 0) {
+            cout << u + 1 << " " << e.to + 1 << endl;
+          }
         }
       }
-
     }
   }
-
-
 };
 
 int main() {
   int n,m;
   cin >> n >> m;
-  graph g(n);
+  Dinic g(n);
   for (int i = 0; i < m; ++i) {
     int u, v, w;
-    cin >> u >> v >> w;
+    cin >> u >> v;
+    w = 1;
+    u--;v--;
     g.add_edge(u, v, w);
   }
   cout << g.max_flow(0,n-1) << endl;
-  g.print_residual_graph();
+  g.print_mincut_edges(0);
 }
+
