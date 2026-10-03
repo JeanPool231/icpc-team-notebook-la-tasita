@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-
 struct Node {
     ll val = 0;
 };
@@ -10,7 +9,6 @@ struct SegTree {
   vector<Node> t;
   vector<ll> lz;
   SegTree(int n) : n(n), t(4*n), lz(4*n) {}
-
   Node merge(const Node& a,const Node& b) {
     Node res;
     res.val = a.val + b.val;
@@ -36,7 +34,7 @@ struct SegTree {
   }
   void update(int ql, int qr, ll v, int x, int l, int r) {
     if (qr <= l || r <= ql) return;
-    if (ql <= l && r <= qr) {apply(x,l,r,v); return;}
+    if (ql <= l && r <= qr) {apply(x,l,r,v); return; }
     push(x,l,r);
     int m = (l+r)/2;
     update(ql,qr,v,2*x+1,l,m);
@@ -46,7 +44,7 @@ struct SegTree {
   Node query(int ql, int qr, int x, int l, int r) {
     if (ql <= l && r <= qr) return t[x];
     push(x,l,r);
-    int m = (l+r)/2;
+    int m = (l + r) / 2;
     if (qr <= m) return query(ql,qr,2*x+1,l,m);
     if (ql >= m) return query(ql,qr,2*x+2,m,r);
     return merge(query(ql,qr,2*x+1,l,m),
