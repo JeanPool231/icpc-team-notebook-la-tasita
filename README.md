@@ -7,3 +7,4 @@ ICPC Team Notebook. Team "UPC - Turistas".
 | Codeforces | [spigi](https://codeforces.com/profile/spigi) | 2022 - current |
 | Codeforces | [iAmJP](https://codeforces.com/profile/iAmJP) | 2024 - current |
 | Codeforces | [Santi2007939](https://codeforces.com/profile/Santi2007939) | 2024 - current |
+| Codeforces | [Chatito17](https://codeforces.com/profile/Chatito17 ) | 2026 - current |
