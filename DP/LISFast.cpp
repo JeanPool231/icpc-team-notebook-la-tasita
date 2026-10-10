@@ -1,62 +1,42 @@
-// https://leetcode.com/problems/longest-increasing-subsequence/description/
-#include <bits/stdc++.h>
-using namespace std;
-
-int LISFast(vector<int> arr) {
-    int n = arr.size();
-    vector<int> res;
-    res.push_back(arr[0]);
-
-    for (int i = 1; i < n; i++) {
-        if (arr[i] > res.back()) {
-            res.push_back(arr[i]);
-        } else { 
-            auto it = lower_bound(res.begin(),res.end(),arr[i]);
-            int busca = it - res.begin();
-            res[busca] = arr[i];
-        }
+// LIS Fast O(N log N)
+int LISFast(const vi& arr) {
+    vi res;
+    each(x, arr) {
+        auto it = lower_bound(all(res), x); // upper_bound para no estrictamente creciente
+        if (it == res.end()) res.pb(x);
+        else *it = x;
     }
-
-    return res.size();
+    return sz(res);
 }
 
-vector<int> LISFastReconstruccion(vector<int> arr) {
-    int n = arr.size();
-    vector<int> res;
-    vector<int> resIndex;
-    vector<int> padre(n, - 1);
+// LIS Fast con Reconstrucción - O(N log N)
+vi LISFastReconstruccion(const vi& arr) {
+    int n = sz(arr);
+    vi res, resIndex, padre(n, -1);
 
-    for (int i = 0; i < n; i++) {
+    rep(i, n) {
         int x = arr[i];
-        auto it = lower_bound(res.begin(), res.end(), x);
+        auto it = lower_bound(all(res), x);
         int pos = it - res.begin();
 
         if (it == res.end()) {
-            res.push_back(x);
-            resIndex.push_back(i);
+            res.pb(x);
+            resIndex.pb(i);
         } else {
             *it = x;
             resIndex[pos] = i;
         }
 
-        if (pos > 0)
-            padre[i] = resIndex[pos - 1];
+        if (pos > 0) padre[i] = resIndex[pos - 1];
     }
 
-    vector<int> lis;
+    vi lis;
     int idx = resIndex.back();
     while (idx != -1) {
-        lis.push_back(arr[idx]);
+        lis.pb(arr[idx]);
         idx = padre[idx];
     }
-    reverse(lis.begin(), lis.end());
+    reverse(all(lis));
     return lis;
 }
 
-int main() {
-    vector<int> nuevo = {1,3,6,7,9,4,10,5,6};
-	cout << LISFast(nuevo) << endl;
-
-    vector<int> reconstruccion = LISFastReconstruccion(nuevo);
-    for (int& val : reconstruccion) cout << val << " ";
-}

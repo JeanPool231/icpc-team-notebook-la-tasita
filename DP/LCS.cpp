@@ -1,46 +1,24 @@
-// https://leetcode.com/problems/longest-common-subsequence/submissions/1815539365/
-#include <bits/stdc++.h>
-using namespace std;
-
-string s1, s2;
-const int n = 1000;
-int dp[n][n];
-
-int LCS(int i, int j) {
-    if (i < 0 || j < 0) return 0;
-    if (dp[i][j] != -1) return dp[i][j];
-
-    if (s1[i] == s2[j]) dp[i][j] = 1 + LCS(i - 1, j - 1);
-    else dp[i][j] = max(LCS(i-1,j), LCS(i,j-1));
-    
-    return dp[i][j];
-}
-
-string LCSReconstruccion() {
-    int i = s1.size() - 1;
-    int j = s2.size() - 1;
+// Longest Common Subsequence & Reconstruction - O(N * M)
+pair<int, string> LCS(const string& s1, const string& s2) {
+    int n = sz(s1), m = sz(s2);
+    vvi dp(n + 1, vi(m + 1, 0));
+    rep(i, n) rep(j, m) {
+        if (s1[i] == s2[j]) dp[i + 1][j + 1] = dp[i][j] + 1;
+        else dp[i + 1][j + 1] = max(dp[i][j + 1], dp[i + 1][j]);
+    }
     string ans = "";
-
-    while (i >= 0 && j >= 0) {
-        if (s1[i] == s2[j]) {
-            ans += s1[i];
-            i--, j--;
-        } 
-        else {
-            if (i > 0 && (j == 0 || dp[i - 1][j] >= dp[i][j - 1])) i--;
-            else j--;
+    int i = n, j = m;
+    while (i > 0 && j > 0) {
+        if (s1[i - 1] == s2[j - 1]) {
+            ans += s1[i - 1];
+            i--; j--;
+        } else if (dp[i - 1][j] >= dp[i][j - 1]) {
+            i--;
+        } else {
+            j--;
         }
     }
-
-    reverse(ans.begin(), ans.end());
-    return ans;
+    reverse(all(ans));
+    return {dp[n][m], ans};
 }
 
-int main() {
-    memset(dp,-1,sizeof(dp));
-    s1 = "abcde";
-    s2 = "ace";
-
-    cout << LCS(s1.size() - 1, s2.size() - 1) << endl;
-    cout << LCSReconstruccion() << endl;
-}
