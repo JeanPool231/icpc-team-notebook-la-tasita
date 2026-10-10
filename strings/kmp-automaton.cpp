@@ -79,15 +79,16 @@ ll fdp(int pos, int state) {
   return val;
 }
 
-void solve() {
-  memset(dp, -1, sizeof dp);
-  cin >> n >> k >> pattern;
-
-  compute_automaton(pattern, aut);
-  
-  cout << fdp(0,0) << endl;
-}
-
-int main() {
-  solve();
-}
+// Ejemplo de uso anterior (comentado para pegar el algoritmo con la plantilla):
+// void solve() {
+//   memset(dp, -1, sizeof dp);
+//   cin >> n >> k >> pattern;
+//
+//   compute_automaton(pattern, aut);
+//   
+//   cout << fdp(0,0) << endl;
+// }
+//
+// int main() {
+//   solve();
+// }

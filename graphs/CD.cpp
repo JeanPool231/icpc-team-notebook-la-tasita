@@ -107,49 +107,51 @@ int dist(vector<pair<int, int>>& v, int target) {
     }
     return -1;
 }
-int32_t main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cin >> n;
-    for (int i = 0; i < n - 1; i++) {
-        int u, v;
-        cin >> u >> v;
-        adj[u].push_back(v);
-        adj[v].push_back(u);
-    }
 
-    decompose(1);
-    for (int i = 1; i < n; i++) {
-        int aux = i;
-        int ori = aux;
-        pair<int, int> res = {1e9, 1e9};
-        bool ya = false;
-        do {
-            int it = bs(elements[aux], ori);
-            if (it == -1) {
-                aux = parCentroid[aux];
-                linea();
-                continue;
-            }
-            pair<int, int> ans = sufix[aux][it];
-            int it2 = dist(elements[aux], ori);
-            ans.second += elements[aux][it2].second;
-            if (ans.second < res.second) {
-                res = ans;
-            }
-            else if (ans.second == res.second) {
-                if (ans.first < res.first) {
-                    res = ans;
-                }
-            }
-            aux = parCentroid[aux];
-            linea();
-            if (ya) break;
-            if (parCentroid[aux] == aux) ya = true;
-        } while (true);
-        cout << res.first << ' ';
-    }
-    cout << n << '\n';
-    
-    return 0;
-}
+// Ejemplo de uso anterior (comentado para compilar con la plantilla):
+// int32_t main() {
+//     ios::sync_with_stdio(false);
+//     cin.tie(nullptr);
+//     cin >> n;
+//     for (int i = 0; i < n - 1; i++) {
+//         int u, v;
+//         cin >> u >> v;
+//         adj[u].push_back(v);
+//         adj[v].push_back(u);
+//     }
+//
+//     decompose(1);
+//     for (int i = 1; i < n; i++) {
+//         int aux = i;
+//         int ori = aux;
+//         pair<int, int> res = {1e9, 1e9};
+//         bool ya = false;
+//         do {
+//             int it = bs(elements[aux], ori);
+//             if (it == -1) {
+//                 aux = parCentroid[aux];
+//                 linea();
+//                 continue;
+//             }
+//             pair<int, int> ans = sufix[aux][it];
+//             int it2 = dist(elements[aux], ori);
+//             ans.second += elements[aux][it2].second;
+//             if (ans.second < res.second) {
+//                 res = ans;
+//             }
+//             else if (ans.second == res.second) {
+//                 if (ans.first < res.first) {
+//                     res = ans;
+//                 }
+//             }
+//             aux = parCentroid[aux];
+//             linea();
+//             if (ya) break;
+//             if (parCentroid[aux] == aux) ya = true;
+//         } while (true);
+//         cout << res.first << ' ';
+//     }
+//     cout << n << '\n';
+//     
+//     return 0;
+// }

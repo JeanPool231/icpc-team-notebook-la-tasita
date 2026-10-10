@@ -77,10 +77,10 @@ vector<ll> multiplicacion_polinomio(const vector<ll>& A, const vector<ll>& B) {
     return res;
 }
 
-
-int main() {
-    vector<ll> A = {1, 2, 3}; // 1 + 2x + 3x^2
-    vector<ll> B = {2, 0, 1}; // 2 + 0x + 1x^2
-    vector<ll> C = multiplicacion_polinomio(A, B);
-    return 0;
-}
+// Ejemplo de uso anterior (comentado para pegar el algoritmo con la plantilla):
+// int main() {
+//     vector<ll> A = {1, 2, 3}; // 1 + 2x + 3x^2
+//     vector<ll> B = {2, 0, 1}; // 2 + 0x + 1x^2
+//     vector<ll> C = multiplicacion_polinomio(A, B);
+//     return 0;
+// }

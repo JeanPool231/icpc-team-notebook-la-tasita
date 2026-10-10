@@ -4,7 +4,6 @@ using namespace std;
 
 #define fst first
 #define snd second
-#define all(c) ((c).begin()), ((c).end())
 #define ll long long
 
 const int INF = 1 << 30;
@@ -21,28 +20,29 @@ void floyd_warshall() {
           d[i][j] = d[i][k] + d[k][j]; 
 }
 
-void solve() {
-  int s, t;
-  cin >> n;
-  cin >> s >> t;
-  for(int i = 1; i <= n; i++) {
-    for(int j = 1; j <= n; j++) {
-      cin >> d[i][j];
-      if(d[i][j] == -1) d[i][j] = INF;
-    }
-  }
-
-  if(d[s][t] == INF)
-    cout << "-1\n";
-  else
-   cout << d[s][t] << '\n';
-}
-
-int main() {
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-  int t = 1;
-  //cin >> t;
-  while(t--)
-    solve();
-}
+// Ejemplo de uso anterior (comentado para pegar el algoritmo con la plantilla):
+// void solve() {
+//   int s, t;
+//   cin >> n;
+//   cin >> s >> t;
+//   for(int i = 1; i <= n; i++) {
+//     for(int j = 1; j <= n; j++) {
+//       cin >> d[i][j];
+//       if(d[i][j] == -1) d[i][j] = INF;
+//     }
+//   }
+//
+//   if(d[s][t] == INF)
+//     cout << "-1\n";
+//   else
+//    cout << d[s][t] << '\n';
+// }
+//
+// int main() {
+//   ios::sync_with_stdio(false);
+//   cin.tie(nullptr);
+//   int t = 1;
+//   //cin >> t;
+//   while(t--)
+//     solve();
+// }

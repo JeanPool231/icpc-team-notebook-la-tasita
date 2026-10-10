@@ -66,38 +66,40 @@ double area(const vector<point>& fig) {
 
 
 // example use case
-void solve() {
-  double n,r; 
-  cin >> n >> r;
 
-  vector<point> coords(n);
-  for(int i = 0; i < n; i++) {
-    cin >> coords[i].x >> coords[i].y;
-  }
-
-  auto dist = [](point &a, point&b) {
-    return sqrt(pow(a.x-b.x,2)+pow(a.y-b.y,2));
-  };
-
-  const double PI = 3.141516;
-  double cir = 2 * PI * r;
-  convex_hull(coords);
-
-  double per = 0; 
-  coords.push_back(coords[0]);
-  for(int i = 1; i < coords.size(); i++) {
-    per +=  dist(coords[i-1],coords[i]);
-  }
-
-  int ans = round(per+cir);
-  cout << ans << endl;
-}
-
-int main() {
-  ios::sync_with_stdio(false);
-  cin.tie(0);
-  int t = 1;
-  //cin >> t;
-  while(t--)
-    solve();
-}
+// Ejemplo de uso anterior (comentado para pegar el algoritmo con la plantilla):
+// void solve() {
+//   double n,r; 
+//   cin >> n >> r;
+//
+//   vector<point> coords(n);
+//   for(int i = 0; i < n; i++) {
+//     cin >> coords[i].x >> coords[i].y;
+//   }
+//
+//   auto dist = [](point &a, point&b) {
+//     return sqrt(pow(a.x-b.x,2)+pow(a.y-b.y,2));
+//   };
+//
+//   const double PI = 3.141516;
+//   double cir = 2 * PI * r;
+//   convex_hull(coords);
+//
+//   double per = 0; 
+//   coords.push_back(coords[0]);
+//   for(int i = 1; i < coords.size(); i++) {
+//     per +=  dist(coords[i-1],coords[i]);
+//   }
+//
+//   int ans = round(per+cir);
+//   cout << ans << endl;
+// }
+//
+// int main() {
+//   ios::sync_with_stdio(false);
+//   cin.tie(0);
+//   int t = 1;
+//   //cin >> t;
+//   while(t--)
+//     solve();
+// }

@@ -1,66 +1,22 @@
-#include <bits/stdc++.h>
-
-using namespace std;
-
-#define fst first
-#define snd second
-#define all(c) ((c).begin()), ((c).end())
-#define ll long long
-
-const int INF = 1 << 30;
-const int MAXN = 1e3+5;
-
-int n, m;
-int qn;      
-char q[10];
-int f[MAXN][MAXN];
-
-void update(int x, int y, int delta) {
-  for (int i = x; i <= n; i = i | (i + 1))
-    for (int j = y; j <= m; j = j | (j + 1))
-      f[i][j] += delta;
-}
-
-int getSum(int x, int y) {
-  int res = 0;
-  for (int i = x; i > 0; i = (i & (i + 1)) - 1)
-    for (int j = y; j > 0; j = (j & (j + 1)) - 1)
-      res += f[i][j];
-  return res;
-}
-
-int getSum(int xFrom, int xTo, int yFrom, int yTo) {
-  return getSum(xTo, yTo) - getSum(xTo, yFrom - 1) - getSum(xFrom - 1, yTo) + getSum(xFrom - 1, yFrom - 1);
-}
-
-void solve() {
-  cin >> n >> qn;
-  m = n;
-
-  for (int i = 1; i <= qn; i++) {
-    cin >> q;
-    if (q[0] == 'A') {
-      int x, y;
-      cin >> x >> y;
-      update(x, y, 1);
-    }
-    else {
-      int xFrom, xTo, yFrom, yTo;
-      cin >> xFrom >> yFrom >> xTo >> yTo;
-      if (xFrom > xTo)
-        swap(xFrom, xTo);
-      if (yFrom > yTo)
-        swap(yFrom, yTo);
-      cout << getSum(xFrom, xTo, yFrom, yTo);
-    }   
+struct Fenwick2D {
+  int n, m;
+  vector<vector<ll>> t;
+  Fenwick2D(int n, int m) : n(n), m(m), t(n+1,vector<ll>(m+1)) {}
+  Fenwick2D(const vector<vector<ll>>& a) : Fenwick2D(a.size(),a[0].size()) {
+    for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) add(i,j,a[i][j]);
   }
-}
-
-int main() {
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-  int t = 1;
-  //cin >> t;
-  while(t--)
-    solve();
-}
+  void add(int x, int y, ll v) {
+    for (int i = x+1; i <= n; i += i&-i)
+      for (int j = y+1; j <= m; j += j&-j) t[i][j] += v;
+  }
+  ll pre(int x, int y) { // sum of [0, x) x [0, y)
+    ll s = 0;
+    for (int i = x; i > 0; i -= i&-i)
+      for (int j = y; j > 0; j -= j&-j) s += t[i][j];
+    return s;
+  }
+  ll query(int x1, int y1, int x2, int y2) { // [x1, x2) x [y1, y2)
+    return pre(x2,y2) - pre(x1,y2) - pre(x2,y1) + pre(x1,y1);
+  }
+  void set(int x, int y, ll v) { add(x,y,v - query(x,y,x+1,y+1)); }
+};

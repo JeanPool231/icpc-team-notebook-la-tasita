@@ -25,4 +25,4 @@ ll knapsackBounded(const vi& pesos, const vll& valores, const vi& copias, int W)
     ll ans = 0;
     rep(j, W + 1) ckmax(ans, dp[j]);
     return ans;
-}
+}

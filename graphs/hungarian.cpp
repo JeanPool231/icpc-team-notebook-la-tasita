@@ -4,7 +4,6 @@ using namespace std;
 
 #define fst first
 #define snd second
-#define all(c) ((c).begin()), ((c).end())
 #define ll long long
 #define ms(a, b) memset(a, b, sizeof(a))
 
@@ -81,32 +80,32 @@ struct KuhnMunkras { // n for left, m for right
   }
 };
 
-void solve() {
-  int n, m;
-  cin >> n >> m;
-
-  KuhnMunkras<double> km;
-  km.init(n, m);
-
-  for (int i = 1; i <= n; ++i) {
-    for (int j = 1; j <= m; ++j) {
-      double c; 
-      cin >> c;
-      km.add(i,j, -c);
-    }
-  }
-
-  double result = km.matching();
-  double total_cost = -result;
-  cout << total_cost << '\n';
-}
-
-
-int main() {
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-  int t = 1;
-  //cin >> t;
-  while(t--)
-    solve();
-}
+// Ejemplo de uso anterior (comentado para pegar el algoritmo con la plantilla):
+// void solve() {
+//   int n, m;
+//   cin >> n >> m;
+//
+//   KuhnMunkras<double> km;
+//   km.init(n, m);
+//
+//   for (int i = 1; i <= n; ++i) {
+//     for (int j = 1; j <= m; ++j) {
+//       double c; 
+//       cin >> c;
+//       km.add(i,j, -c);
+//     }
+//   }
+//
+//   double result = km.matching();
+//   double total_cost = -result;
+//   cout << total_cost << '\n';
+// }
+//
+// int main() {
+//   ios::sync_with_stdio(false);
+//   cin.tie(nullptr);
+//   int t = 1;
+//   //cin >> t;
+//   while(t--)
+//     solve();
+// }

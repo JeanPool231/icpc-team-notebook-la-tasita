@@ -5,3 +5,9 @@
 .idea
 .vscode
 test/
+__pycache__/
+notebook.aux
+notebook.log
+notebook.out
+notebook.toc
+notebook.synctex.gz

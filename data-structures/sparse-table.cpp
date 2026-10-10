@@ -1,6 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-using ll = long long;
 struct SparseTable {
   int n;
   vector<vector<ll>> t;
@@ -26,3 +23,4 @@ struct SparseTable {
     return res;
   }
 };
+

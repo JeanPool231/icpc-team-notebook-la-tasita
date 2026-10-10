@@ -4,7 +4,6 @@ using namespace std;
 
 #define fst first
 #define snd second
-#define all(c) ((c).begin()), ((c).end())
 #define ll long long
 #define endl '\n'
 
@@ -77,42 +76,42 @@ struct TwoSatSolver {
 
 };
 
-void solve() {
-  int n,m; 
-  cin >> n >> m;
-
-  TwoSatSolver solver(m);
-  for(int i = 0; i < n; i++) {
-    int topping1, topping2;
-    char op1, op2;
-    cin >> op1 >> topping1 >> op2 >> topping2;
-    bool no_good1 = op1 == '-';
-    bool no_good2 = op2 == '-';
-    topping1--,topping2--;
-    solver.add_disjunction(topping1,no_good1, topping2, no_good2);
-  }
-
-  bool poss = solver.solve_2SAT();
-  if(!poss) {
-    cout << "IMPOSSIBLE" << endl;
-    return;
-  }
-
-  for(int i = 0; i < m; i++) {
-    if(solver.assignment[i]) {
-      cout << "+ ";
-    } else {
-      cout << "- ";
-    }
-  }
-}
-
-int main() {
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-  int t = 1;
-  //cin >> t;
-  while(t--)
-    solve();
-}
-
+// Ejemplo de uso anterior (comentado para pegar el algoritmo con la plantilla):
+// void solve() {
+//   int n,m; 
+//   cin >> n >> m;
+//
+//   TwoSatSolver solver(m);
+//   for(int i = 0; i < n; i++) {
+//     int topping1, topping2;
+//     char op1, op2;
+//     cin >> op1 >> topping1 >> op2 >> topping2;
+//     bool no_good1 = op1 == '-';
+//     bool no_good2 = op2 == '-';
+//     topping1--,topping2--;
+//     solver.add_disjunction(topping1,no_good1, topping2, no_good2);
+//   }
+//
+//   bool poss = solver.solve_2SAT();
+//   if(!poss) {
+//     cout << "IMPOSSIBLE" << endl;
+//     return;
+//   }
+//
+//   for(int i = 0; i < m; i++) {
+//     if(solver.assignment[i]) {
+//       cout << "+ ";
+//     } else {
+//       cout << "- ";
+//     }
+//   }
+// }
+//
+// int main() {
+//   ios::sync_with_stdio(false);
+//   cin.tie(nullptr);
+//   int t = 1;
+//   //cin >> t;
+//   while(t--)
+//     solve();
+// }

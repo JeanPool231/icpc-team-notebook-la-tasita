@@ -1,72 +1,29 @@
-#include <bits/stdc++.h>
-
-using namespace std;
-
-#define fst first
-#define snd second
-#define all(c) ((c).begin()), ((c).end())
-#define ll long long
-
-const int INF = 1 << 30;
-const int MAXN = 1e5+5;
-
-int n,m;
-vector<pair<int, int>> adj[MAXN];
-
-void dijkstra(int s, vector<int> & d, vector<int> & p) {
-  d.assign(n+1, INF);
-  p.assign(n+1, -1);
-  vector<bool> visited(n+1,0);
-
-  d[s] = 0;
-  using pii = pair<int, int>;
-  priority_queue<pii, vector<pii>, greater<pii>> q;
-  q.push({0, s});
-  while (!q.empty()) {
-    int v = q.top().second;
-    q.pop();
-    if(visited[v]) continue;
-    visited[v] = 1;
-
-    for (auto edge : adj[v]) {
-      int to = edge.first;
-      int len = edge.second;
-
-      if (d[v] + len < d[to]) {
-        d[to] = d[v] + len;
-        p[to] = v;
-        q.push({d[to], to});
-      }
+const ll INF = LLONG_MAX / 4;
+struct Dijkstra {
+  int n;
+  vector<vector<pair<int,ll>>> g;
+  vector<ll> d;
+  vector<int> par;
+  Dijkstra(int n) : n(n), g(n) {}
+  void add_edge(int a, int b, ll w) { g[a].push_back({b,w}); } // directed
+  void add_undirected(int a, int b, ll w) { add_edge(a,b,w); add_edge(b,a,w); }
+  void run(const vector<int>& src) { // multi-source
+    d.assign(n,INF); par.assign(n,-1);
+    priority_queue<pair<ll,int>,vector<pair<ll,int>>,greater<>> pq;
+    for (int s : src) { d[s] = 0; pq.push({0,s}); }
+    while (!pq.empty()) {
+      auto [du,u] = pq.top(); pq.pop();
+      if (du > d[u]) continue; // stale entry
+      for (auto [v,w] : g[u])
+        if (d[u]+w < d[v]) { d[v] = d[u]+w; par[v] = u; pq.push({d[v],v}); }
     }
   }
-}
-
-vector<int> restore_path(int s, int t, vector<int> const& p) {
-  vector<int> path;
-
-  for (int v = t; v != s; v = p[v])
-    path.push_back(v);
-  path.push_back(s);
-
-  reverse(path.begin(), path.end());
-  return path;
-}
-
-
-int main()
-{
-  cin >> n >> m;
-  // adj.resize(n+1);
-  while(m--) {
-    int a,b,w;
-    cin >> a >> b >> w;
-    adj[a].push_back({b,w});
+  void run(int s) { run(vector<int>{s}); }
+  vector<int> path(int t) { // s -> t, empty if unreachable
+    vector<int> p;
+    if (d[t] >= INF) return p;
+    for (; t >= 0; t = par[t]) p.push_back(t);
+    reverse(p.begin(),p.end());
+    return p;
   }
-
-  int str=1, target=n;
-
-  vector<int> distance, path;
-
-  dijkstra(str, distance,path);
-  cout << distance[n] << '\n';
-}
+};

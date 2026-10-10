@@ -4,7 +4,6 @@ using namespace std;
 
 #define fst first
 #define snd second
-#define all(c) ((c).begin()), ((c).end())
 #define ll long long
 #define ms(a, b) memset(a, b, sizeof(a))
 
@@ -83,58 +82,58 @@ void strongly_connected_components(vector<vector<int>> const& adj,
   }
 }
 
-void solve() {
-
-  int n = 5, m = 5;
-  vector<vector<int>> adj(n);
-
-  vector<pair<int,int>> edges = {
-    {0,1},
-    {1,2},
-    {2,0},
-    {1,3},
-    {3,4}
-  };
-
-  for (auto &e : edges) {
-    adj[e.first].push_back(e.second);
-  }
-
-  vector<vector<int>> components, cond_graph;
-  strongly_connected_components(adj, components, cond_graph);
-
-  for (auto &comp : components) {
-    sort(comp.begin(), comp.end());
-  }
-
-  cout << "Number of SCCs: " << (int)components.size() << "\n";
-  for (int i = 0; i < (int)components.size(); i++) {
-    cout << "SCC " << i << ": ";
-    for (auto &v : components[i]) {
-      cout << v << " ";
-    }
-    cout << "\n";
-  }
-
-  cout << "Condensation graph adjacency list:\n";
-  // We'll print only non-empty adjacency to see edges
-  for (int i = 0; i < (int)cond_graph.size(); i++) {
-    if (!cond_graph[i].empty()) {
-      cout << "root " << i << ": ";
-      for (auto &v : cond_graph[i]) {
-        cout << v << " ";
-      }
-      cout << "\n";
-    }
-  }
-}
-
-int main() {
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-  int t = 1;
-  //cin >> t;
-  while(t--)
-    solve();
-}
-
+// Ejemplo de uso anterior (comentado para pegar el algoritmo con la plantilla):
+// void solve() {
+//
+//   int n = 5, m = 5;
+//   vector<vector<int>> adj(n);
+//
+//   vector<pair<int,int>> edges = {
+//     {0,1},
+//     {1,2},
+//     {2,0},
+//     {1,3},
+//     {3,4}
+//   };
+//
+//   for (auto &e : edges) {
+//     adj[e.first].push_back(e.second);
+//   }
+//
+//   vector<vector<int>> components, cond_graph;
+//   strongly_connected_components(adj, components, cond_graph);
+//
+//   for (auto &comp : components) {
+//     sort(comp.begin(), comp.end());
+//   }
+//
+//   cout << "Number of SCCs: " << (int)components.size() << "\n";
+//   for (int i = 0; i < (int)components.size(); i++) {
+//     cout << "SCC " << i << ": ";
+//     for (auto &v : components[i]) {
+//       cout << v << " ";
+//     }
+//     cout << "\n";
+//   }
+//
+//   cout << "Condensation graph adjacency list:\n";
+//   // We'll print only non-empty adjacency to see edges
+//   for (int i = 0; i < (int)cond_graph.size(); i++) {
+//     if (!cond_graph[i].empty()) {
+//       cout << "root " << i << ": ";
+//       for (auto &v : cond_graph[i]) {
+//         cout << v << " ";
+//       }
+//       cout << "\n";
+//     }
+//   }
+// }
+//
+// int main() {
+//   ios::sync_with_stdio(false);
+//   cin.tie(nullptr);
+//   int t = 1;
+//   //cin >> t;
+//   while(t--)
+//     solve();
+// }

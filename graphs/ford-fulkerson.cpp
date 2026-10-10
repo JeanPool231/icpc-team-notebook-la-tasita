@@ -93,18 +93,18 @@ struct Dinic {
   }
 };
 
-int main() {
-  int n,m;
-  cin >> n >> m;
-  Dinic g(n);
-  for (int i = 0; i < m; ++i) {
-    int u, v, w;
-    cin >> u >> v;
-    w = 1;
-    u--;v--;
-    g.add_edge(u, v, w);
-  }
-  cout << g.max_flow(0,n-1) << endl;
-  g.print_mincut_edges(0);
-}
-
+// Ejemplo de uso anterior (comentado para pegar el algoritmo con la plantilla):
+// int main() {
+//   int n,m;
+//   cin >> n >> m;
+//   Dinic g(n);
+//   for (int i = 0; i < m; ++i) {
+//     int u, v, w;
+//     cin >> u >> v;
+//     w = 1;
+//     u--;v--;
+//     g.add_edge(u, v, w);
+//   }
+//   cout << g.max_flow(0,n-1) << endl;
+//   g.print_mincut_edges(0);
+// }

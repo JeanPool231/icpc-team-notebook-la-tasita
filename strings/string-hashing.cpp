@@ -32,18 +32,19 @@ ll get_hash(vector<ll> &hash_values, int a, int b) {
     return (hash_values[b] - (hash_values[a - 1] * pot[b - a + 1]) % M + M) % M;
 }
 
-int main() {
-    string word = "ALLEY";
-    compute_powers(word.size());
-    vector<ll> hash = compute_hash(word);
-
-    for (int i = 1; i <= word.size(); i++) {
-        cout << hash[i] << ' ';
-    }
-    cout << endl;
-    for (int i = 1; i <= word.size(); i++) {
-        cout << word[i - 1] << ": " << get_hash(hash, i, i) << endl;
-    }
-    
-    return 0;
-}
+// Ejemplo de uso anterior (comentado para pegar el algoritmo con la plantilla):
+// int main() {
+//     string word = "ALLEY";
+//     compute_powers(word.size());
+//     vector<ll> hash = compute_hash(word);
+//
+//     for (int i = 1; i <= word.size(); i++) {
+//         cout << hash[i] << ' ';
+//     }
+//     cout << endl;
+//     for (int i = 1; i <= word.size(); i++) {
+//         cout << word[i - 1] << ": " << get_hash(hash, i, i) << endl;
+//     }
+//     
+//     return 0;
+// }

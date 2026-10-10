@@ -50,34 +50,34 @@ ll kruskal(int n, vector<Edge>& edges, vector<Edge>& result) {
   return cost;
 }
 
-int main() {
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-
-  int n, m;
-  cin >> n >> m;
-
-  vector<Edge> edges;
-  edges.reserve(m);
-
-  for (int i = 0; i < m; i++) {
-    ll u, v, w;
-    cin >> u >> v >> w;
-    u--, v--;
-    edges.push_back({u, v, w});
-  }
-
-  vector<Edge> result;
-  ll total_cost = kruskal(n, edges, result);
-
-  if(result.size() == n-1) {
-    cout << total_cost << endl;
-  } else {
-    cout << "IMPOSSIBLE" << endl;
-  }
-
-  // Optional: print MST edges
-  // for (auto &e : result)
-  //     cout << e.u + 1 << " " << e.v + 1 << " " << e.weight << endl;
-}
-
+// Ejemplo de uso anterior (comentado para pegar el algoritmo con la plantilla):
+// int main() {
+//   ios::sync_with_stdio(false);
+//   cin.tie(nullptr);
+//
+//   int n, m;
+//   cin >> n >> m;
+//
+//   vector<Edge> edges;
+//   edges.reserve(m);
+//
+//   for (int i = 0; i < m; i++) {
+//     ll u, v, w;
+//     cin >> u >> v >> w;
+//     u--, v--;
+//     edges.push_back({u, v, w});
+//   }
+//
+//   vector<Edge> result;
+//   ll total_cost = kruskal(n, edges, result);
+//
+//   if(result.size() == n-1) {
+//     cout << total_cost << endl;
+//   } else {
+//     cout << "IMPOSSIBLE" << endl;
+//   }
+//
+//   // Optional: print MST edges
+//   // for (auto &e : result)
+//   //     cout << e.u + 1 << " " << e.v + 1 << " " << e.weight << endl;
+// }

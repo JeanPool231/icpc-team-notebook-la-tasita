@@ -4,7 +4,6 @@ using namespace std;
 
 #define fst first
 #define snd second
-#define all(c) ((c).begin()), ((c).end())
 #define ll long long
 
 const int INF = 1 << 30;
@@ -40,24 +39,23 @@ void topological_sort() {
   reverse(topo.begin(), topo.end());
 }
 
-void solve() {
-  cin >> n >> m;
-  for(int i = 0; i <= n; i++) adj[i].clear();
-  while(m--) {
-    int a,b;
-    cin >> a >> b;
-    adj[a].push_back(b);
-  }
-  topological_sort();
-  for (int x : topo) cout << x << " ";
-  cout << "\n";
-}
-
-int main() {
-  int t = 1;
-  // cin >> t;
-  while(t--) 
-    solve();
-}
-
-
+// Ejemplo de uso anterior (comentado para pegar el algoritmo con la plantilla):
+// void solve() {
+//   cin >> n >> m;
+//   for(int i = 0; i <= n; i++) adj[i].clear();
+//   while(m--) {
+//     int a,b;
+//     cin >> a >> b;
+//     adj[a].push_back(b);
+//   }
+//   topological_sort();
+//   for (int x : topo) cout << x << " ";
+//   cout << "\n";
+// }
+//
+// int main() {
+//   int t = 1;
+//   // cin >> t;
+//   while(t--) 
+//     solve();
+// }

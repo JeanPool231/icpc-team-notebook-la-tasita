@@ -20,4 +20,4 @@ int knapsackDiferencia(const vi& arr) {
         dp = move(next_dp);
     }
     return dp[0];
-}
+}

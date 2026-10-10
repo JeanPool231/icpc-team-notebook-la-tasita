@@ -23,4 +23,4 @@ pair<ll, vi> knapsackReconstruction(const vii& items, int W) {
     }
     reverse(all(taken));
     return {dp[n][W], taken};
-}
+}

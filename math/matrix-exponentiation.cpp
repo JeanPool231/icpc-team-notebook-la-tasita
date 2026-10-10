@@ -54,9 +54,8 @@ ll fibonacci(int n) {
   return base.mat[0][0]; // F(n)
 }
 
-int main() {
-  for(int i = 0; i < 25; i++) 
-    cout << fibonacci(i) << " ";
-}
-
-
+// Ejemplo de uso anterior (comentado para pegar el algoritmo con la plantilla):
+// int main() {
+//   for(int i = 0; i < 25; i++) 
+//     cout << fibonacci(i) << " ";
+// }

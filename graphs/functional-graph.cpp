@@ -62,85 +62,86 @@ int distcycle(int u, int v) {
   return turn + cycle_idx[v] - 1;
 }
 
-void solve() {
-  int n,q;
-  cin >> n >> q;
-
-  for(int i = 1; i <= n; i++) {
-    cin >> next_node[i];
-    up[i][0] = next_node[i];
-  }
-
-  for(int j = 1; j < LOG; j++) {
-    for(int i = 1; i <= n; i++) {
-      up[i][j] = up[up[i][j-1]][j-1]; 
-    }
-  }
-
-  for(int i = 1; i <= n; i++) {
-    if(!visited[i]) dfs(i);
-  }
-
-  while(q--) {
-    int u,v;
-    cin >> u >> v;
-
-    int cyu = cycle[u];
-    int cyv = cycle[v];
-
-    if(cyu == 0) {
-      cyu = cycle[jumpto(u,depth[u])]; 
-    }
-    if(cyv == 0) {
-      cyv = cycle[jumpto(v,depth[v])]; 
-    }
-
-    int a = u;
-    int b = v;
-
-    if(cyu != cyv) {
-      cout << -1 << endl;
-      continue;
-    }
-
-    if(cycle[u] == 0 && cycle[v] == 0) {
-      if(depth[u] < depth[v]) {
-        cout << -1 << endl;
-        continue;
-      }
-      int diff = depth[u] - depth[v];
-      if(jumpto(u,diff) != v) {
-        cout << -1 << endl;
-      } else {
-        cout << diff << endl;
-      }
-      continue;
-    }
-
-    if(cycle[u] && cycle[v]) {
-      cout << distcycle(u,v) << endl;
-      continue;
-    }
-
-    if(cycle[u] == 0) {
-      int steps = depth[u];
-      steps += distcycle(jumpto(u,depth[u]), v);
-      cout << steps << endl;
-      continue;
-    }
-
-    if(cycle[v] == 0) {
-      cout << -1 <<endl;
-      continue;
-    }
-  }
-}
-
-int main() {
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-  int t = 1;
-  //cin >> t;
-  while(t--)
-    solve();
-}
+// Ejemplo de uso anterior (comentado para pegar el algoritmo con la plantilla):
+// void solve() {
+//   int n,q;
+//   cin >> n >> q;
+//
+//   for(int i = 1; i <= n; i++) {
+//     cin >> next_node[i];
+//     up[i][0] = next_node[i];
+//   }
+//
+//   for(int j = 1; j < LOG; j++) {
+//     for(int i = 1; i <= n; i++) {
+//       up[i][j] = up[up[i][j-1]][j-1]; 
+//     }
+//   }
+//
+//   for(int i = 1; i <= n; i++) {
+//     if(!visited[i]) dfs(i);
+//   }
+//
+//   while(q--) {
+//     int u,v;
+//     cin >> u >> v;
+//
+//     int cyu = cycle[u];
+//     int cyv = cycle[v];
+//
+//     if(cyu == 0) {
+//       cyu = cycle[jumpto(u,depth[u])]; 
+//     }
+//     if(cyv == 0) {
+//       cyv = cycle[jumpto(v,depth[v])]; 
+//     }
+//
+//     int a = u;
+//     int b = v;
+//
+//     if(cyu != cyv) {
+//       cout << -1 << endl;
+//       continue;
+//     }
+//
+//     if(cycle[u] == 0 && cycle[v] == 0) {
+//       if(depth[u] < depth[v]) {
+//         cout << -1 << endl;
+//         continue;
+//       }
+//       int diff = depth[u] - depth[v];
+//       if(jumpto(u,diff) != v) {
+//         cout << -1 << endl;
+//       } else {
+//         cout << diff << endl;
+//       }
+//       continue;
+//     }
+//
+//     if(cycle[u] && cycle[v]) {
+//       cout << distcycle(u,v) << endl;
+//       continue;
+//     }
+//
+//     if(cycle[u] == 0) {
+//       int steps = depth[u];
+//       steps += distcycle(jumpto(u,depth[u]), v);
+//       cout << steps << endl;
+//       continue;
+//     }
+//
+//     if(cycle[v] == 0) {
+//       cout << -1 <<endl;
+//       continue;
+//     }
+//   }
+// }
+//
+// int main() {
+//   ios::sync_with_stdio(false);
+//   cin.tie(nullptr);
+//   int t = 1;
+//   //cin >> t;
+//   while(t--)
+//     solve();
+// }

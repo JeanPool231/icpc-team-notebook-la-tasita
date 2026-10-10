@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define all(v) (v).begin(), (v).end()
 #define endl '\n'
 using ll = long long;
 
@@ -49,20 +48,21 @@ void decompose(int u, int p = -1) {
 }
 
 // ---------- MAIN ----------
-int main() {
-    cin >> n;
-    for (int i = 0; i < n - 1; i++) {
-        int u, v;
-        cin >> u >> v;
-        adj[u].push_back(v);
-        adj[v].push_back(u);
-    }
 
-    decompose(0);
-    cout << "Centroid decomposition parent array:\n";
-    for (int i = 0; i < n; i++)
-        cout << i << " -> " << parCentroid[i] << endl;
-
-    return 0;
-}
-
+// Ejemplo de uso anterior (comentado para pegar el algoritmo con la plantilla):
+// int main() {
+//     cin >> n;
+//     for (int i = 0; i < n - 1; i++) {
+//         int u, v;
+//         cin >> u >> v;
+//         adj[u].push_back(v);
+//         adj[v].push_back(u);
+//     }
+//
+//     decompose(0);
+//     cout << "Centroid decomposition parent array:\n";
+//     for (int i = 0; i < n; i++)
+//         cout << i << " -> " << parCentroid[i] << endl;
+//
+//     return 0;
+// }

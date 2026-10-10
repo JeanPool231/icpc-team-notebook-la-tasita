@@ -1,0 +1,159 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=1.6cm]{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\definecolor{codebg}{RGB}{248,249,251}
+\lstset{language=C++,basicstyle=\ttfamily\fontsize{8}{9}\selectfont,
+  keywordstyle=\color{blue!65!black},commentstyle=\color{green!35!black},
+  stringstyle=\color{red!55!black},backgroundcolor=\color{codebg},
+  numbers=left,numberstyle=\tiny\color{gray},numbersep=4pt,
+  breaklines=true,breakatwhitespace=false,keepspaces=true,
+  showstringspaces=false,tabsize=2,aboveskip=3pt,belowskip=6pt,
+  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ñ}{{\~n}}1 {—}{---}1 {─}{-}1}
+\titleformat{\section}{\Large\bfseries\color{blue!55!black}}{}{0em}{}
+\titleformat{\subsection}{\large\bfseries}{}{0em}{}
+\setlength{\parindent}{0pt}
+\begin{document}
+\pagenumbering{roman}
+\begin{titlepage}\centering\vspace*{2cm}
+{\Huge\bfseries Notebook ICPC\\[0.4cm]La Tasita\par}
+\vspace{1cm}{\LARGE Team: UPC - Turistas\par}
+\vfill{\Large Integrantes\par}\vspace{0.4cm}
+spigi\\
+Jean\_Pool\\
+Santi2007939\\
+Chatito17
+\vfill{\large Competitive Programming Notebook\par}\end{titlepage}
+\pagenumbering{arabic}
+\tableofcontents
+\clearpage
+\section{Dynamic Programming}
+\subsection{Convex Hull Trick}
+\lstinputlisting{DP/ConvexHullTrick.cpp}
+\subsection{Data Structure Optimization}
+\lstinputlisting{DP/DataStructureOptimization.cpp}
+\subsection{Digit Dp}
+\lstinputlisting{DP/DigitDP.cpp}
+\subsection{Divide And Conquer}
+\lstinputlisting{DP/DivideAndConquer.cpp}
+\subsection{Knapsack}
+\lstinputlisting{DP/knapsack.cpp}
+\subsection{Knapsack Binary}
+\lstinputlisting{DP/knapsackBinary.cpp}
+\subsection{Knapsack Re}
+\lstinputlisting{DP/knapsackRe.cpp}
+\subsection{Knapsack Subset Sum}
+\lstinputlisting{DP/knapsackSubsetSum.cpp}
+\subsection{Knuth}
+\lstinputlisting{DP/Knuth.cpp}
+\subsection{LCS}
+\lstinputlisting{DP/LCS.cpp}
+\subsection{LIS}
+\lstinputlisting{DP/LIS.cpp}
+\subsection{Lisfast}
+\lstinputlisting{DP/LISFast.cpp}
+\subsection{Maximum Subarray}
+\lstinputlisting{DP/MaximumSubarray.cpp}
+\subsection{Subset Sum Bitset}
+\lstinputlisting{DP/SubsetSumBitset.cpp}
+\section{Data Structures}
+\subsection{Binary Lifting Weighted}
+\lstinputlisting{data-structures/binary-lifting-weighted.cpp}
+\subsection{Binary Lifting}
+\lstinputlisting{data-structures/binary-lifting.cpp}
+\subsection{DSU Rollback}
+\lstinputlisting{data-structures/dsu-rollback.cpp}
+\subsection{DSU}
+\lstinputlisting{data-structures/dsu.cpp}
+\subsection{Fenwick Tree 2D Range}
+\lstinputlisting{data-structures/fenwick-tree-2d-range.cpp}
+\subsection{Fenwick Tree 2D}
+\lstinputlisting{data-structures/fenwick-tree-2d.cpp}
+\subsection{Fenwick Tree Range}
+\lstinputlisting{data-structures/fenwick-tree-range.cpp}
+\subsection{Fenwick Tree}
+\lstinputlisting{data-structures/fenwick-tree.cpp}
+\subsection{HLD}
+\lstinputlisting{data-structures/hld.cpp}
+\subsection{Ordered Set}
+\lstinputlisting{data-structures/ordered_set.cpp}
+\subsection{Persistent Segment Tree}
+\lstinputlisting{data-structures/persistent-segment-tree.cpp}
+\subsection{Segment Tree Lazy}
+\lstinputlisting{data-structures/segment-tree-lazy.cpp}
+\subsection{Segment Tree}
+\lstinputlisting{data-structures/segment-tree.cpp}
+\subsection{Sparse Table}
+\lstinputlisting{data-structures/sparse-table.cpp}
+\subsection{Two Pointers}
+\lstinputlisting{data-structures/two-pointers.cpp}
+\section{Geometry}
+\subsection{Convex Hull}
+\lstinputlisting{geometry/convex-hull.cpp}
+\section{Graphs}
+\subsection{2-SAT}
+\lstinputlisting{graphs/2-sat.cpp}
+\subsection{Bellman Ford}
+\lstinputlisting{graphs/bellman-ford.cpp}
+\subsection{Cd}
+\lstinputlisting{graphs/CD.cpp}
+\subsection{Centroid Decomposition}
+\lstinputlisting{graphs/centroid-decomposition.cpp}
+\subsection{Dijkstra}
+\lstinputlisting{graphs/dijkstra.cpp}
+\subsection{Floyd Warshall}
+\lstinputlisting{graphs/floyd-warshall.cpp}
+\subsection{Ford Fulkerson}
+\lstinputlisting{graphs/ford-fulkerson.cpp}
+\subsection{Functional Graph}
+\lstinputlisting{graphs/functional-graph.cpp}
+\subsection{Hungarian}
+\lstinputlisting{graphs/hungarian.cpp}
+\subsection{Kosaraju Scc}
+\lstinputlisting{graphs/kosaraju-scc.cpp}
+\subsection{Kruskal}
+\lstinputlisting{graphs/kruskal.cpp}
+\subsection{Topological Sort}
+\lstinputlisting{graphs/topological-sort.cpp}
+\section{Math}
+\subsection{Binary Exponentiation}
+\lstinputlisting{math/binary-exponentiation.cpp}
+\subsection{Expected Value}
+\lstinputlisting{math/expected-value.cpp}
+\subsection{FFT}
+\lstinputlisting{math/FFT.cpp}
+\subsection{Matrix Exponentiation}
+\lstinputlisting{math/matrix-exponentiation.cpp}
+\subsection{NTT}
+\lstinputlisting{math/NTT.cpp}
+\section{Strings}
+\subsection{Aho Corasick}
+\lstinputlisting{strings/aho-corasick.cpp}
+\subsection{Bit Trie}
+\lstinputlisting{strings/BitTrie.cpp}
+\subsection{Double Hash}
+\lstinputlisting{strings/double-hash.cpp}
+\subsection{Hash}
+\lstinputlisting{strings/hash.cpp}
+\subsection{KMP Automaton}
+\lstinputlisting{strings/kmp-automaton.cpp}
+\subsection{KMP}
+\lstinputlisting{strings/kmp.cpp}
+\subsection{Rolling Hash}
+\lstinputlisting{strings/rolling-hash.cpp}
+\subsection{String Hashing}
+\lstinputlisting{strings/string-hashing.cpp}
+\subsection{Suffix Array}
+\lstinputlisting{strings/suffix-array.cpp}
+\subsection{Suffix Tree}
+\lstinputlisting{strings/suffix-tree.cpp}
+\subsection{Trie}
+\lstinputlisting{strings/trie.cpp}
+\subsection{Z Function}
+\lstinputlisting{strings/z-function.cpp}
+\end{document}
