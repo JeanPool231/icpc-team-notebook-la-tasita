@@ -18,29 +18,6 @@ En Arch Linux, instala los paquetes necesarios con:
 sudo pacman -S texlive-basic texlive-latex texlive-latexrecommended texlive-latexextra texlive-langspanish
 ```
 
-## Plantilla de código
-
-Cada algoritmo está preparado para pegarse debajo de las declaraciones de [otros/plantilla.cpp](otros/plantilla.cpp). Para validar individualmente todos los códigos:
-
-```bash
-python3 - <<'PY'
-from pathlib import Path
-import re, subprocess, tempfile
-
-template = Path('otros/plantilla.cpp').read_text()
-template = re.sub(r'void solve\(\)\s*\{.*?\n\}', '', template, flags=re.S)
-template = re.sub(r'int main\s*\(\)\s*\{.*?\n\}', '', template, flags=re.S)
-for source in sorted(Path('.').glob('**/*.cpp')):
-    if source.as_posix() in {'otros/plantilla.cpp', 'template.cpp'}:
-        continue
-    unit = template + '\n' + source.read_text() + '\nint main(){return 0;}\n'
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.cpp') as f:
-        f.write(unit)
-        f.flush()
-        subprocess.run(['g++', '-std=c++17', '-fsyntax-only', f.name], check=True)
-print('Todos los códigos compilan con la plantilla.')
-PY
-```
 
 | Plataforma | Usuario | Activo desde |
 | ---------- | ------- | ------------ |
