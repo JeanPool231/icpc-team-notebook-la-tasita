@@ -12,13 +12,17 @@ import tempfile
 ROOT = Path(__file__).resolve().parent
 TEAM = "UPC - Turistas"
 MEMBERS = ["spigi", "Jean_Pool", "Santi2007939", "Chatito17"]
-SKIP = {"template.cpp", "otros/plantilla.cpp"}
+SKIP = {"template.cpp"}
 
 
 def code_files():
     return sorted(
         (p for p in ROOT.rglob("*.cpp") if p.relative_to(ROOT).as_posix() not in SKIP),
-        key=lambda p: (p.parent.as_posix(), p.name.lower()),
+        key=lambda p: (
+            p.relative_to(ROOT).as_posix() == "otros/plantilla.cpp",
+            p.parent.as_posix(),
+            p.name.lower(),
+        ),
     )
 
 
