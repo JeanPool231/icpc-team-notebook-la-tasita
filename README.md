@@ -12,6 +12,14 @@ python3 build_notebook.py
 
 Esto actualiza `notebook.tex` y genera `notebook.pdf` con portada, integrantes, índice y una columna en A4 vertical. El generador usa `pdflatex`; si aún no está instalado, usa LibreOffice como alternativa temporal.
 
+Para la versión libro (A4 horizontal partida en dos columnas, con el contenido corriendo de una columna a la otra) ejecuta:
+
+```bash
+python3 build_notebook_book.py
+```
+
+Genera `notebook_book.tex` y `notebook_book.pdf`. Sin `pdflatex` usa Chrome/Chromium/Edge; en ese caso instala `pypdf` para que el índice muestre los números de hoja.
+
 En Arch Linux, instala los paquetes necesarios con:
 
 ```bash
