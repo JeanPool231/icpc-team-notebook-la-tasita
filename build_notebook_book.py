@@ -29,15 +29,15 @@ def build_tex(files):
              r"\usepackage{hyperref}", r"\usepackage{titlesec}",
              r"\definecolor{codebg}{RGB}{248,249,251}",
              r"\setlength{\columnsep}{0.9cm}", r"\setlength{\columnseprule}{0.4pt}",
-             r"\lstset{language=C++,basicstyle=\ttfamily\fontsize{7}{8}\selectfont,",
+             r"\lstset{language=C++,basicstyle=\ttfamily\fontsize{10.5}{12}\selectfont,",
              r"  keywordstyle=\color{blue!65!black},commentstyle=\color{green!35!black},",
              r"  stringstyle=\color{red!55!black},backgroundcolor=\color{codebg},",
-             r"  numbers=left,numberstyle=\tiny\color{gray},numbersep=3pt,xleftmargin=8pt,",
+             r"  numbers=left,numberstyle=\fontsize{7.5}{9}\selectfont\color{gray},numbersep=4pt,xleftmargin=12pt,",
              r"  breaklines=true,breakatwhitespace=false,keepspaces=true,",
              r"  showstringspaces=false,tabsize=2,aboveskip=2pt,belowskip=4pt,",
              r"  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ñ}{{\~n}}1 {—}{---}1 {─}{-}1}",
-             r"\titleformat{\section}{\large\bfseries\color{blue!55!black}}{}{0em}{}",
-             r"\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}",
+             r"\titleformat{\section}{\fontsize{18}{22}\selectfont\bfseries\color{blue!55!black}}{}{0em}{}",
+             r"\titleformat{\subsection}{\fontsize{15}{18}\selectfont\bfseries}{}{0em}{}",
              r"\titlespacing*{\section}{0pt}{6pt}{3pt}",
              r"\titlespacing*{\subsection}{0pt}{4pt}{1pt}",
              r"\setlength{\parindent}{0pt}", r"\begin{document}",
@@ -49,7 +49,7 @@ def build_tex(files):
              (r"\\" + "\n").join(latex_escape(m) for m in MEMBERS),
              r"\vfill{\large Competitive Programming Notebook\par}\end{titlepage}",
              r"\pagenumbering{arabic}", r"\begin{multicols*}{2}",
-             r"\tableofcontents", r"\columnbreak"]
+             r"{\fontsize{15}{18}\selectfont\tableofcontents}", r"\columnbreak"]
     active = None
     for path in files:
         rel = path.relative_to(ROOT).as_posix()
@@ -95,11 +95,11 @@ body {{ margin:0; font-family: Arial, sans-serif; color:#172033; }}
 .cover {{ height:185mm; break-after:page; text-align:center; padding-top:30mm; box-sizing:border-box; }}
 .book {{ column-count:2; column-gap:9mm; column-rule:0.5pt solid #9aa3b2; column-fill:auto; }}
 .toc {{ break-after:column; }}
-.toc ul {{ margin:0 0 4pt; padding-left:14pt; font-size:9pt; }}
-h1 {{ font-size:13pt; color:#2456a6; border-bottom:1px solid #2456a6; padding-bottom:2pt; margin:6pt 0 3pt; }}
-h2 {{ font-size:10pt; margin:6pt 0 2pt; break-after:avoid; }}
-h3 {{ font-size:10pt; margin:5pt 0 1pt; color:#2456a6; }}
-pre {{ margin:0 0 4pt; white-space:pre-wrap; overflow-wrap:anywhere; font:7pt/1.15 "Liberation Mono",Consolas,monospace;
+.toc ul {{ margin:0 0 4pt; padding-left:20pt; font-size:13.5pt; }}
+h1 {{ font-size:19.5pt; color:#2456a6; border-bottom:1px solid #2456a6; padding-bottom:2pt; margin:6pt 0 3pt; }}
+h2 {{ font-size:15pt; margin:6pt 0 2pt; break-after:avoid; }}
+h3 {{ font-size:15pt; margin:5pt 0 1pt; color:#2456a6; }}
+pre {{ margin:0 0 4pt; white-space:pre-wrap; overflow-wrap:anywhere; font:10.5pt/1.15 "Liberation Mono",Consolas,monospace;
   background:#f8f9fb; padding:3pt; }}
 </style></head><body>
 <section class="cover"><h1 style="font-size:30pt;border:0">Notebook ICPC<br>La Tasita</h1>

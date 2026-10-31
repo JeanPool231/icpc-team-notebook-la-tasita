@@ -11,15 +11,15 @@
 \definecolor{codebg}{RGB}{248,249,251}
 \setlength{\columnsep}{0.9cm}
 \setlength{\columnseprule}{0.4pt}
-\lstset{language=C++,basicstyle=\ttfamily\fontsize{7}{8}\selectfont,
+\lstset{language=C++,basicstyle=\ttfamily\fontsize{10.5}{12}\selectfont,
   keywordstyle=\color{blue!65!black},commentstyle=\color{green!35!black},
   stringstyle=\color{red!55!black},backgroundcolor=\color{codebg},
-  numbers=left,numberstyle=\tiny\color{gray},numbersep=3pt,xleftmargin=8pt,
+  numbers=left,numberstyle=\fontsize{7.5}{9}\selectfont\color{gray},numbersep=4pt,xleftmargin=12pt,
   breaklines=true,breakatwhitespace=false,keepspaces=true,
   showstringspaces=false,tabsize=2,aboveskip=2pt,belowskip=4pt,
   literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ñ}{{\~n}}1 {—}{---}1 {─}{-}1}
-\titleformat{\section}{\large\bfseries\color{blue!55!black}}{}{0em}{}
-\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titleformat{\section}{\fontsize{18}{22}\selectfont\bfseries\color{blue!55!black}}{}{0em}{}
+\titleformat{\subsection}{\fontsize{15}{18}\selectfont\bfseries}{}{0em}{}
 \titlespacing*{\section}{0pt}{6pt}{3pt}
 \titlespacing*{\subsection}{0pt}{4pt}{1pt}
 \setlength{\parindent}{0pt}
@@ -36,7 +36,7 @@ Chatito17
 \vfill{\large Competitive Programming Notebook\par}\end{titlepage}
 \pagenumbering{arabic}
 \begin{multicols*}{2}
-\tableofcontents
+{\fontsize{15}{18}\selectfont\tableofcontents}
 \columnbreak
 \section{Dynamic Programming}
 \subsection{Convex Hull Trick}
