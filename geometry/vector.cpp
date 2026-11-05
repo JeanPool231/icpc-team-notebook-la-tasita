@@ -3,12 +3,12 @@ using namespace std;
 
 #define ll long long
 
-// Funcion para canonizar un vector e inclinarlos a un lado
+// Devuelve la forma canonica de un vector e inclinarlos a un lado
 // Ejemplo: (-12, 3) -> (4, -1)
 
 pair<ll, ll> canon(pair<ll, ll> a)
 {
-    ll div = gcd(a.first, a.second);
+    ll div = gcd(abs(a.first), abs(a.second));
     a.first /= div;
     a.second /= div;
     if (a.first < 0 || (a.first == 0 && a.second < 0))
@@ -19,7 +19,7 @@ pair<ll, ll> canon(pair<ll, ll> a)
     return a;
 }
 
-// Funcion para obtener el vector perpendicular de un vector
+// Devuelve el vector perpendicular de un vector
 
 pair<ll, ll> perp(pair<ll, ll> v)
 {
