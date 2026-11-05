@@ -16,7 +16,7 @@ pair<ll, ll> canon(pair<ll, ll> a)
         a.first *= -1;
         a.second *= -1;
     }
-    return {a.first, a.second};
+    return a;
 }
 
 // Funcion para obtener el vector perpendicular de un vector
