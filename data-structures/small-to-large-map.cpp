@@ -12,7 +12,7 @@ int valores[MAXN];
 // Puede ser map<int,int>, set<int>, o una estructura personalizada.
 map<int, int> subtree_map[MAXN];
 
-void dfs_small_to_large(int u, int p = -1)
+void dfs(int u, int p = -1)
 {
     int largest_child = -1;
     int max_size = -1;
@@ -22,7 +22,7 @@ void dfs_small_to_large(int u, int p = -1)
     {
         if (v != p)
         {
-            dfs_small_to_large(v, u);
+            dfs(v, u);
             // Identificamos el hijo cuya estructura de datos es la más grande
             if ((int)subtree_map[v].size() > max_size)
             {
